@@ -5,7 +5,8 @@ let passwordLength = 10;
 let passwordOneEl = document.getElementById("password-one-el");
 let passwordTwoEl = document.getElementById("password-two-el");
 
-function generatePassword() {
+
+function generatePasswords() {
     if (passwordGenerated === false) {
 
     for (let i = 0; i < passwordLength; i ++) {
@@ -18,4 +19,9 @@ function generatePassword() {
     }
     passwordGenerated = true;
 }
+}
+function resetPasswords() {
+    passwordGenerated = false;
+    passwordOneEl.textContent = "";
+    passwordTwoEl.textContent = "";
 }
