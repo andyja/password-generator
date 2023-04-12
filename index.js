@@ -5,7 +5,6 @@ let passwordLength = 15;
 let passwordOneEl = document.getElementById("password-one-el");
 let passwordTwoEl = document.getElementById("password-two-el");
 
-
 function generatePasswords() {
     if (passwordGenerated === false) {
 
@@ -20,6 +19,28 @@ function generatePasswords() {
     passwordGenerated = true;
 }
 }
+
+const copyTextOne = async () => {
+    let copyPasswordOne = document.getElementById("password-one-el").innerHTML;
+    try {
+        await navigator.clipboard.writeText(copyPasswordOne);
+        alert('Content copied to clipboard');
+      } catch (err) {
+        alert('Failed to copy: ', err);
+      }
+    }
+
+const copyTextTwo = async () => {
+        let copyPasswordTwo = document.getElementById("password-two-el").innerHTML;
+        try {
+            await navigator.clipboard.writeText(copyPasswordTwo);
+            alert('Content copied to clipboard');
+          } catch (err) {
+            alert('Failed to copy: ', err);
+          }
+        }
+
+  
 function resetPasswords() {
     passwordGenerated = false;
     passwordOneEl.textContent = "";

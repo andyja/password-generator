@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Password Generator</title>
 </head>
 <body>
     <div>
         <h1>Generate a random password</h1>
         <h3>Never use an insecure password again</h3>
         <button onclick="generatePasswords()">Generate passwords</button>
-        <p id="password-one-el">Password1: </p>
-        <p id="password-two-el">Password2: </p>
-        <button onclick="resetPasswords()">Reset</button>
+        <p>Password1:</p>
+        <p id="password-one-el"></p>
+        <button onclick="copyTextOne()">Copy Password1</button>
+        <p>Password2:</p>
+        <p id="password-two-el"></p>
+        <button onclick="copyTextTwo()">Copy Password2 </button>
+            <div>
+            <button onclick="resetPasswords()">Reset</button>
+            </div>
         <script src="index.js"></script>
     </div>
 </body>
