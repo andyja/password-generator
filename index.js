@@ -24,7 +24,7 @@ async function copyTextOne() {
         let copyPasswordOne = document.getElementById("password-one-el").innerHTML;
         try {
             await navigator.clipboard.writeText(copyPasswordOne);
-            alert('Content copied to clipboard');
+            alert('Password1 copied to clipboard');
         } catch (err) {
         alert('Failed to copy: ', err);
         }
@@ -35,7 +35,7 @@ async function copyTextTwo() {
         let copyPasswordTwo = document.getElementById("password-two-el").innerHTML;
         try {
             await navigator.clipboard.writeText(copyPasswordTwo);
-            alert('Content copied to clipboard');
+            alert('Password2 copied to clipboard');
         } catch (err) {
             alert('Failed to copy: ', err);
         }
