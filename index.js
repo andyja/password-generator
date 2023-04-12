@@ -19,27 +19,28 @@ function generatePasswords() {
     passwordGenerated = true;
 }
 }
-
-const copyTextOne = async () => {
-    let copyPasswordOne = document.getElementById("password-one-el").innerHTML;
-    try {
-        await navigator.clipboard.writeText(copyPasswordOne);
-        alert('Content copied to clipboard');
-      } catch (err) {
+async function copyTextOne() {
+    if (passwordGenerated) {
+        let copyPasswordOne = document.getElementById("password-one-el").innerHTML;
+        try {
+            await navigator.clipboard.writeText(copyPasswordOne);
+            alert('Content copied to clipboard');
+        } catch (err) {
         alert('Failed to copy: ', err);
-      }
-    }
-
-const copyTextTwo = async () => {
+        }
+    } 
+}
+async function copyTextTwo() {
+    if (passwordGenerated) {
         let copyPasswordTwo = document.getElementById("password-two-el").innerHTML;
         try {
             await navigator.clipboard.writeText(copyPasswordTwo);
             alert('Content copied to clipboard');
-          } catch (err) {
+        } catch (err) {
             alert('Failed to copy: ', err);
-          }
         }
-
+    }
+}
   
 function resetPasswords() {
     passwordGenerated = false;
