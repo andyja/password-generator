@@ -1,0 +1,25 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "new",
+  "main": "y",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andyja/scrimba-password-generator.git"
+  },
+  "keywords": [
+    "passwor"
+  ],
+  "author": "andy",
+  "license": "SEE LICENSE IN index.js",
+  "bugs": {
+    "url": "https://github.com/andyja/scrimba-password-generator/issues"
+  },
+  "homepage": "https://github.com/andyja/scrimba-password-generator#readme",
+  "dependencies": {
+    "tailwindcss": "^3.3.2"
+  }
+}
