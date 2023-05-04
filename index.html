@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="main.css"> -->
     <title>Password Generator</title>
 </head>
-<body class="bg-red-400 text-yellow-600">
+<body class="bg-red-900 text-yellow-600 m-8 p-1">
     <div>
-        <h1>Generate a random password</h1>
-        <h3>Never use an insecure password again</h3>
+        <h1 class="bg-gray-500 w-32 h-32">Generate a random password</h1>
+        <h3 class="bg-pink-900 w-1/2 h-8">Never use an insecure password again</h3>
         <button onclick="generatePasswords()">Generate passwords</button>
         <p>Password1:</p>
         <p id="password-one-el"></p>
