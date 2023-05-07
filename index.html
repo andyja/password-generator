@@ -6,21 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="main.css"> -->
+    <link rel="icon" href="images/key-solid.svg" type="image/x-icon">
+    <link rel="stylesheet" href="main.css">
     <title>Password Generator</title>
 </head>
 <body class="bg-blue-900 text-gray-400 m-8 p-1 font-mono text-xl text-center">
     <div>
         <h1 class="text-3xl font-bold">Generate a random password</h1>
         <h3 class="text-2xl border-4 border-blue-800">Never use an insecure password again</h3>
-        <button onclick="generatePasswords()" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Generate passwords</button>
+        <form class="length-input">
+            <label>Password length (4-20)</label>
+            <input type="range" id ="length" min="4" max="20" step="1" />
+            <span id="password-range-result"></span>
+        </form>
+        <button 
+            id="#generate-passwords-btn" 
+            class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+            Generate passwords
+        </button>
+        
         <p>Password 1:</p>
         <p id="password-one-el"></p>
-        <button onclick="copyTextOne()"><i class="fa-solid fa-copy"></i> Copy Password 1</button>
-        <p>Password     2:</p>
+        <button id="#copyPasswordOne">
+            <span class="copy-detail">
+                <i class="fa-solid fa-copy ${copiedTextOneClass}"></i>
+            </span> 
+            Copy Password 1
+        </button>
+
+        <p>Password 2:</p>
         <p id="password-two-el"></p>
-        <button onclick="copyTextTwo()"><i class="fa-solid fa-copy"></i> Copy Password 2 </button>
-            <div>
+            <button id="#copyPasswordTwo">
+                <span class="copy-detail">
+                    <i class="fa-solid fa-copy ${copiedTextOneClass}"></i>
+                </span> 
+                Copy Password 2 
+            </button>
+        
+        <div>
             <button onclick="resetPasswords()">Reset</button>
             </div>
         <script src="index.js"></script>
