@@ -19,6 +19,16 @@
             <input type="range" id ="length" min="4" max="20" step="1" />
             <span id="password-range-result"></span>
         </form>
+
+        <div class="include-num-symbols">
+            <label>Check to include numbers</label>
+            <input type="checkbox" id="#numChars-checked"/>
+        </div>
+        <div class="include-num-symbols">
+            <label>Check to include symbols</label>
+            <input type="checkbox" id="symbolChars-checked"/>
+        </div>
+
         <button 
             id="#generate-passwords-btn" 
             class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
@@ -44,7 +54,7 @@
             </button>
         
         <div>
-            <button onclick="resetPasswords()">Reset</button>
+            <button id="#reset-btn">Reset</button>
             </div>
         <script src="index.js"></script>
     </div>
