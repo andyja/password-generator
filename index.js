@@ -7,8 +7,8 @@ let passwordLength = 15;
 let passwordOneEl = document.getElementById("password-one-el");
 let passwordTwoEl = document.getElementById("password-two-el");
 let resetBtn = document.getElementById("reset-btn");
-let lengthResult = document.querySelector("length");
-let passwordRangeResult = document.querySelector("password-range-result");
+let lengthResult = document.querySelector("#length");
+let passwordRangeResult = document.querySelector("#password-range-result");
 let numCharsChecked = document.getElementById("numChars-checked");
 let symbolCharsChecked = document.getElementById("symbolChars-checked")
 
@@ -25,26 +25,22 @@ resetBtn.addEventListener('click', resetPasswords);
 
 function renderCopyOneBtn(){
     return ` 
-        <div id="copy-password-one-btn">
             <button>
                 <span class="copy-detail">
-                    <i class="fa-solid fa-copy"></i>
+                    <i id="copyOne" class="fa-solid fa-copy"></i>
                 </span> 
                 Copy Password 1 
             </button>
-        </div>
     `;
     }
 function renderCopyTwoBtn(){
     return ` 
-        <div id="copy-password-two-btn">
             <button>
                 <span class="copy-detail">
-                    <i class="fa-solid fa-copy"></i>
+                    <i id="copyTwo" class="fa-solid fa-copy"></i>
                 </span> 
                 Copy Password 2 
             </button>
-        </div>
     `;
     }
 
@@ -65,14 +61,14 @@ function generatePasswords() {
     }   
 }
 
-let copyPasswordOneBtn = document.getElementById("copyPasswordOne");
+let copyPasswordOneBtn = document.getElementById("copy-password-one-btn");
 copyPasswordOneBtn.addEventListener('click', copyTextOne);
 
 async function copyTextOne() {
-    // let copiedTextOneClass = '';
     if (passwordGenerated) {
         let copyPasswordOne = document.getElementById("password-one-el").innerHTML;
-        // copiedTextOneClass = 'copied'
+        document.getElementById("copyOne").classList.add('copied');
+        document.getElementById("copyTwo").classList.remove('copied');
         try {
             await navigator.clipboard.writeText(copyPasswordOne);
             alert('Password1 copied to clipboard');
@@ -80,15 +76,17 @@ async function copyTextOne() {
         alert('Failed to copy: ', err);
         }
     } 
+
+
 }
 let copyPasswordTwoBtn = document.getElementById("copy-password-two-btn");
 copyPasswordTwoBtn.addEventListener('click', copyTextTwo);
 
 async function copyTextTwo() {
-    // let copiedTextTwoClass = '';
     if (passwordGenerated) {
         let copyPasswordTwo = document.getElementById("password-two-el").innerHTML;
-        // let copiedTextTwoClass = 'copied';
+        document.getElementById("copyTwo").classList.add('copied');
+        document.getElementById("copyOne").classList.remove('copied');
         try {
             await navigator.clipboard.writeText(copyPasswordTwo);
             alert('Password2 copied to clipboard');
@@ -97,11 +95,12 @@ async function copyTextTwo() {
         }
     }
 }
-
 function resetPasswords() {
     passwordGenerated = false;
     passwordOneEl.textContent = "";
     passwordTwoEl.textContent = "";
     numCharsChecked.checked = false;
-    symbolCharsChecked.checked = false; 
-};
+    symbolCharsChecked.checked = false;
+    document.getElementById("copy-password-one-btn").innerHTML = "";
+    document.getElementById("copy-password-two-btn").innerHTML = "";
+};  
