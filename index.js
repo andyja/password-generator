@@ -75,9 +75,7 @@ async function copyTextOne() {
         } catch (err) {
         alert('Failed to copy: ', err);
         }
-    } 
-
-
+    }
 }
 let copyPasswordTwoBtn = document.getElementById("copy-password-two-btn");
 copyPasswordTwoBtn.addEventListener('click', copyTextTwo);
