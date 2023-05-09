@@ -2,23 +2,19 @@ const alphaChars = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O",
 const numChars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 const sybmbolChars = ["~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?",
     "/"];
-
 let passwordGenerated = false;
 let passwordLength = 15;
 let passwordOneEl = document.getElementById("password-one-el");
 let passwordTwoEl = document.getElementById("password-two-el");
-let copyPasswordOneBtn = document.getElementById("#copyPasswordOne");
-let copyPasswordTwoBtn = document.getElementById("#copyPasswordTwo");
-let generatePasswordsBtn = document.getElementById("#generate-passwords-btn");
-let resetBtn = document.getElementById("#reset-btn");
-let lengthResult = document.querySelector("#length");
-let passwordRangeResult = document.querySelector("#password-range-result");
-let numCharsChecked = document.getElementById("#numChars-checked");
+let resetBtn = document.getElementById("reset-btn");
+let lengthResult = document.querySelector("length");
+let passwordRangeResult = document.querySelector("password-range-result");
+let numCharsChecked = document.getElementById("numChars-checked");
 let symbolCharsChecked = document.getElementById("symbolChars-checked")
 
-copyPasswordOneBtn.addEventListener('click', copyTextOne);
-copyPasswordTwoBtn.addEventListener('click', copyTextTwo);
+let generatePasswordsBtn = document.getElementById("generate-passwords-btn");
 generatePasswordsBtn.addEventListener('click', generatePasswords);
+
 lengthResult.addEventListener('change', (e) => {
     passwordRangeResult.innerText = e.target.value;
     passwordGenerated = false;
@@ -26,6 +22,31 @@ lengthResult.addEventListener('change', (e) => {
     passwordTwoEl.textContent = "";
     });
 resetBtn.addEventListener('click', resetPasswords);
+
+function renderCopyOneBtn(){
+    return ` 
+        <div id="copy-password-one-btn">
+            <button>
+                <span class="copy-detail">
+                    <i class="fa-solid fa-copy"></i>
+                </span> 
+                Copy Password 1 
+            </button>
+        </div>
+    `;
+    }
+function renderCopyTwoBtn(){
+    return ` 
+        <div id="copy-password-two-btn">
+            <button>
+                <span class="copy-detail">
+                    <i class="fa-solid fa-copy"></i>
+                </span> 
+                Copy Password 2 
+            </button>
+        </div>
+    `;
+    }
 
 function generatePasswords() {
     passwordLength = lengthResult.value;
@@ -39,13 +60,19 @@ function generatePasswords() {
             passwordTwoEl.textContent += alphaChars[index]
         }
         passwordGenerated = true;
+        document.getElementById("copy-password-one-btn").innerHTML = renderCopyOneBtn();
+        document.getElementById("copy-password-two-btn").innerHTML = renderCopyTwoBtn();
     }   
 }
+
+let copyPasswordOneBtn = document.getElementById("copyPasswordOne");
+copyPasswordOneBtn.addEventListener('click', copyTextOne);
+
 async function copyTextOne() {
-    let copiedTextOneClass = '';
+    // let copiedTextOneClass = '';
     if (passwordGenerated) {
         let copyPasswordOne = document.getElementById("password-one-el").innerHTML;
-        copiedTextOneClass = 'copied'
+        // copiedTextOneClass = 'copied'
         try {
             await navigator.clipboard.writeText(copyPasswordOne);
             alert('Password1 copied to clipboard');
@@ -54,11 +81,14 @@ async function copyTextOne() {
         }
     } 
 }
+let copyPasswordTwoBtn = document.getElementById("copy-password-two-btn");
+copyPasswordTwoBtn.addEventListener('click', copyTextTwo);
+
 async function copyTextTwo() {
-    let copiedTextTwoClass = '';
+    // let copiedTextTwoClass = '';
     if (passwordGenerated) {
         let copyPasswordTwo = document.getElementById("password-two-el").innerHTML;
-        let copiedTextTwoClass = 'copied';
+        // let copiedTextTwoClass = 'copied';
         try {
             await navigator.clipboard.writeText(copyPasswordTwo);
             alert('Password2 copied to clipboard');
@@ -67,10 +97,11 @@ async function copyTextTwo() {
         }
     }
 }
+
 function resetPasswords() {
     passwordGenerated = false;
     passwordOneEl.textContent = "";
     passwordTwoEl.textContent = "";
     numCharsChecked.checked = false;
-    symbolCharsChecked.checked = false;
+    symbolCharsChecked.checked = false; 
 };
