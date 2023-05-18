@@ -10,13 +10,33 @@ let passwordRangeResult = document.querySelector("#password-range-result");
 let numCheckBox = document.getElementById("numChars-checked");
 let symCheckBox = document.getElementById("symbolChars-checked");
 let generatePasswordsBtn = document.getElementById("generate-passwords-btn");
+let copyPasswordOneBtn = document.getElementById("copy-password-one-btn");
 
-generatePasswordsBtn.addEventListener('click', generatePasswords);
-lengthResult.addEventListener('change', (e) => {
-    passwordRangeResult.innerText = e.target.value;
-    passwordGenerated = false;
-    passwordOneEl.textContent = "";
-    });
+generatePasswordsBtn.addEventListener('click', function() {
+    passwordGenerated = true;
+    generatePasswordsBtn.innerHTML = '<i class="fa-solid fa-gears fa-spin"></i>';
+    generatePasswordsBtn.disabled = true;
+
+    setTimeout(function() {
+        const password = generatePasswords();
+        passwordOneEl.textContent = password;
+
+        setTimeout(function() {
+            generatePasswordsBtn.innerHTML = "Generate Password";
+            generatePasswordsBtn.disabled = false;
+            passwordGenerated = false;
+        }, 700);
+    }, 2000);
+});
+
+lengthResult.addEventListener('change', function(e) {
+    if (!passwordGenerated) {
+        passwordRangeResult.innerText = e.target.value;
+        passwordOneEl.textContent = "";
+        document.getElementById("copy-password-one-btn").innerHTML = "";
+    }
+});
+copyPasswordOneBtn.addEventListener('click', copyTextOne);
 resetBtn.addEventListener('click', resetPasswords);
 
 function renderCopyOneBtn(){
@@ -32,7 +52,7 @@ function renderCopyOneBtn(){
 function generatePasswords() {
     let result = '';
     passwordLength = lengthResult.value;
-    if (passwordGenerated === false) {
+     {
         if (numCheckBox.checked && symCheckBox.checked){
             let numElementsFromNumCharsArray = 2;
             let numElementsFromSybmbolCharsArray = 2;
@@ -104,16 +124,11 @@ function generatePasswords() {
         }
         let resultToArray = result.split("");
         let newResult = resultToArray.sort((a, b) => 0.5 - Math.random());
-        passwordOneEl.textContent = newResult.join("");
         passwordGenerated = !true;
         document.getElementById("copy-password-one-btn").innerHTML = renderCopyOneBtn();
+        return newResult.join("");
     };
 };     
-
-let copyPasswordOneBtn = document.getElementById("copy-password-one-btn");
-
-copyPasswordOneBtn.addEventListener('click', copyTextOne);
-
 async function copyTextOne() {
     if (!passwordGenerated) {
         let copyPasswordOne = document.getElementById("password-one-el").innerHTML;
@@ -126,7 +141,6 @@ async function copyTextOne() {
         }
     }
 }
-
 function resetPasswords() {
     passwordGenerated = false;
     passwordOneEl.textContent = "";
